@@ -1,0 +1,38 @@
+@startuml Section1
+interface Subject {
+  attach(observer: Observer): void;
+  detach(observer: Observer): void;
+  notifyObs(): void;
+}
+
+class Administrator implements Subject {
+  private MeetingList: Observer[] = [];
+  public attach(observer: Observer): void
+  public detach(observer: Observer): void
+  public notifyObs(): void//在每个订阅用户中触发更新。
+  public notifyUser(observer: Observer): void//在指定用户中触发更新。
+}
+
+
+interface Observer {
+  name: string;
+  accept(subject: Subject): void;
+}
+
+class Department implements Observer {
+  name: string;
+  private EmployeeList: Observer[] = [];
+  public add(observer: Observer): void
+  public remove(observer: Observer): void
+  public accept(subject: Subject): void
+}
+
+class Employee implements Observer {
+  name: string;
+  public accept(subject: Subject): void
+}
+Department o-- Observer
+Observer o-- Subject
+Client -->  Subject
+Client -->  Observer
+@enduml

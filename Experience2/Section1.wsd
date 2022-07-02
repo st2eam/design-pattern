@@ -1,0 +1,31 @@
+@startuml Section1
+interface Management {
+  backup(): void;
+}
+class AddressBook implements Management {
+  backup(): void;
+}
+class Message implements Management {
+  backup(): void;
+}
+class Photo implements Management {
+  backup(): void;
+}
+class Music implements Management {
+  backup(): void;
+}
+class Facade {
+  backup():void
+}
+note right of Facade :" backup(){\n\
+    this.addressBook.backup();\n\
+    this.message.backup();\n\
+    this.photo.backup();\n\
+    this.music.backup();\n\
+  }"
+AddressBook o-- Facade
+Message o-- Facade
+Photo o-- Facade
+Music o-- Facade
+Facade o--  Client
+@enduml

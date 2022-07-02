@@ -1,0 +1,26 @@
+@startuml Section2
+class Context {
+  private strategy: Strategy;
+  constructor(strategy: Strategy)
+  public setStrategy(strategy: Strategy)
+  public doSomeBusinessLogic(): void
+}
+
+interface Strategy {
+  doAlgorithm(): void;
+}
+
+class PreCopy implements Strategy {
+  public doAlgorithm(): void
+}
+
+class Post_Copy implements Strategy {
+  public doAlgorithm(): void
+}
+
+class CR_RT_Motion implements Strategy {
+  public doAlgorithm(): void
+}
+Strategy o-- Context
+Context o-- Client
+@enduml

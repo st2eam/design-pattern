@@ -1,0 +1,41 @@
+@startuml Section1
+abstract class Statement {
+  abstract execute(sql: string): void;
+}
+class MysqlStatement extends Statement {
+  execute(sql: string): void;
+}
+class OracleStatement extends Statement {
+  execute(sql: string): void;
+}
+interface ConnectionFactory {
+  createConnection(): Connection;
+}
+class MySqlConnectionFactory implements ConnectionFactory {
+  createConnection(): Connection;
+}
+class OracleConnectionFactory implements ConnectionFactory {
+  createConnection(): Connection;
+}
+abstract class Connection {
+  statement: Statement;
+  constructor()
+  abstract connect(): void;
+}
+class MySqlConnection extends Connection {
+  connect(): void;
+}
+class OracleConnection extends Connection {
+  connect(): void;
+}
+
+MySqlConnection <.. MySqlConnectionFactory 
+OracleConnection <.. OracleConnectionFactory 
+
+MysqlStatement o-- MySqlConnection
+OracleStatement o-- OracleConnection
+
+class Client
+Statement o--  Connection
+ConnectionFactory o--  Client
+@enduml

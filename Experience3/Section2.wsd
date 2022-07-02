@@ -1,0 +1,31 @@
+@startuml Section2
+interface iterator {
+  current(): T;
+  next(): T;
+  valid(): boolean;
+}
+
+interface Aggregator {
+  getIterator(): iterator;
+}
+
+class MyIterator implements iterator {
+  private collection: GoodsCollection;
+  private position: number = 0;
+  private reverse: boolean = false;
+  public current(): string
+  public next(): string
+  public valid(): boolean
+}
+
+class GoodsCollection implements Aggregator {
+  private items: string[] = [];
+  public getItems(): string[]
+  public getCount(): number
+  public addItem(item: string): void
+  public getIterator(): iterator
+  public getReverseIterator(): iterator
+}
+iterator o--  Aggregator
+GoodsCollection o-- client
+@enduml

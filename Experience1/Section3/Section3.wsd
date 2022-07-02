@@ -1,0 +1,43 @@
+@startuml Section3
+class Client
+
+class SingletonHungry {
+  - SingletonHungry instance
+  - SingletonHungry()
+  + SingletonHungry getInstance()
+}
+
+class SingletonDoubleCheck {
+  - SingletonDoubleCheck instance
+  - SingletonDoubleCheck()
+  + SingletonDoubleCheck getInstance()
+}
+
+class SingletonIoDH {
+  - SingletonIoDH() {}
+  - class HolderClass
+  + SingletonIoDH getInstance()
+}
+
+SingletonHungry o--  Client
+SingletonDoubleCheck o--  Client
+SingletonIoDH o--  Client
+note bottom of SingletonHungry:"SingletonHungry instance = new SingletonHungry()"
+
+note top of SingletonDoubleCheck:"      if (instance == null) { //先验证对象是否创建\n\
+        synchronized (SingletonDoubleCheck.class) { //只有当对象未创建的时候才上锁\n\
+          if (instance == null) {\n\
+            instance = new SingletonDoubleCheck();\n\
+          }\n\
+        }\n\
+      }\n\
+      return instance;\n\
+    }"
+
+note bottom of SingletonIoDH:"    private static class HolderClass {\n\
+      private static final SingletonIoDH instance = new SingletonIoDH();\n\
+    }\n\
+    public static SingletonIoDH getInstance() {\n\
+      return HolderClass.instance;\n\
+    }"
+@enduml

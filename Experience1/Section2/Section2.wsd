@@ -1,0 +1,17 @@
+@startuml Section2
+class image {
+  constructor(src: string)
+  src: string;
+}
+interface resume {
+  clone(a: boolean): resume;
+  image: image;
+}
+class resumeTemplate implements resume {
+  constructor(image: image)
+  clone(deepCopy: boolean): resume
+  image: image;
+}
+image o-- resumeTemplate
+resumeTemplate o--  Client
+@enduml

@@ -1,0 +1,36 @@
+@startuml Section1
+interface Subject {
+  attach(observer: Observer): void;
+  detach(observer: Observer): void;
+  notify(): void;
+}
+
+class ConcreteSubject implements Subject {
+  public textarea: string = "";
+  private observers: Observer[] = [];
+  public attach(observer: Observer): void
+  public detach(observer: Observer): void
+  public notify(): void
+  public edit(str: string): void
+}
+
+
+interface Observer {
+  update(subject: Subject): void;
+}
+
+class ConcreteObserverA implements Observer {
+  public update(subject: Subject): void
+}
+
+class ConcreteObserverB implements Observer {
+  public update(subject: Subject): void
+}
+
+class ConcreteObserverC implements Observer {
+  public update(subject: Subject): void
+}
+
+Observer o-- Subject
+Subject o-- Client
+@enduml

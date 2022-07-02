@@ -1,0 +1,41 @@
+@startuml Section1
+abstract class Commend {
+  abstract execute(): void;
+}
+
+class MenuItem {
+  private commend: Commend;
+  public click(): void
+}
+
+class Menu {
+  public MenuItems: MenuItem[] = [];
+  public addMenuItem(item: MenuItem): void
+}
+
+class BoardScreen {
+  private static boardscreen: BoardScreen = new BoardScreen();
+  public static getInstance(): BoardScreen
+  public open(): void
+  public create(): void
+  public edit(): void
+}
+
+class OpenCommand extends Commend {
+  public execute(): void
+}
+
+class CreateCommand extends Commend {
+  public execute(): void
+}
+
+class EditCommand extends Commend {
+  public execute(): void
+}
+
+Menu o--  Client
+MenuItem o--  Menu
+Commend o--  MenuItem
+BoardScreen o--  Commend
+note right of BoardScreen :"使用单例模式"
+@enduml

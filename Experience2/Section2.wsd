@@ -1,0 +1,15 @@
+@startuml Section2
+ServiceInterface o--  Client 
+interface ServiceInterface {
+  query(key: string): string;
+}
+class Service implements ServiceInterface {
+  query(key: string)
+}
+class ProxyService implements ServiceInterface {
+  query(key: string)
+  data: Map<string, any>;
+  service: Service;
+}
+ProxyService o-- Service
+@enduml
